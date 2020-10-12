@@ -59,20 +59,18 @@ if args.cuda:
 
 
 def train(epoch):
-	t = time.time()
-	model.train()
-	optimizer.zero_grad()
-	output = model(features, adj)
-	loss_train = F.nll_loss(output[idx_train], labels[idx_train])
-	acc_train = accuracy(output[idx_train], labels[idx_train])
-	loss_train.backward()
-	optimizer.step()
-
-	if not args.fastmode:
-        # Evaluate validation set performance separately,
-        # deactivates dropout during validation run.
-    model.eval()
+    t = time.time()
+    model.train()
+    optimizer.zero_grad()
     output = model(features, adj)
+    loss_train = F.nll_loss(output[idx_train], labels[idx_train])
+    acc_train = accuracy(output[idx_train], labels[idx_train])
+    loss_train.backward()
+    optimizer.step()
+
+    if not args.fastmode:
+        model.eval()
+        output = model(features, adj)
 
     loss_val = F.nll_loss(output[idx_val], labels[idx_val])
     acc_val = accuracy(output[idx_val], labels[idx_val])
@@ -84,13 +82,13 @@ def train(epoch):
           'time: {:.4f}s'.format(time.time() - t))
 
     def test():
-    model.eval()
-    output = model(features, adj)
-    loss_test = F.nll_loss(output[idx_test], labels[idx_test])
-    acc_test = accuracy(output[idx_test], labels[idx_test])
-    print("Test set results:",
-          "loss= {:.4f}".format(loss_test.item()),
-          "accuracy= {:.4f}".format(acc_test.item()))
+        model.eval()
+        output = model(features, adj)
+        loss_test = F.nll_loss(output[idx_test], labels[idx_test])
+        acc_test = accuracy(output[idx_test], labels[idx_test])
+        print("Test set results:",
+              "loss= {:.4f}".format(loss_test.item()),
+              "accuracy= {:.4f}".format(acc_test.item()))
 
 
 
