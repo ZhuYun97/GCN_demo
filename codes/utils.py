@@ -4,10 +4,10 @@ import torch
 
 
 def encode_onehot(labels):
-	classes = set(labels) # 得到所有类别，利用set去重
-	classes_dict = {c: np.identity(len(classes))[i, :] for i, c in enumerate(classes)} # 为类别分配one-hot编码
-	labels_onehot = np.array(list(map(classes_dict.get, labels)),
-                             dtype=np.int32) # 得到数据集中每个类别的one-hot
+    classes = set(labels) # 得到所有类别，利用set去重
+    # classes_dict = {c: np.identity(len(classes))[i, :] for i, c in enumerate(classes)} # 为类别分配one-hot编码
+    labels_onehot = np.array(list(map(classes_dict.get, labels)),
+                             dtype=np.int32)
     return labels_onehot
 
 
