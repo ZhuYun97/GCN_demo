@@ -6,8 +6,8 @@ import torch
 import torch.nn.functional as F
 import torch.optim as optim
 
-from .utils import load_data, accuracy
-from .model import GCN
+from utils import load_data, accuracy
+from model import GCN
 
 import tqdm
 
