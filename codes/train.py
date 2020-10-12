@@ -71,8 +71,8 @@ def train(epoch):
 	if not args.fastmode:
         # Evaluate validation set performance separately,
         # deactivates dropout during validation run.
-        model.eval()
-        output = model(features, adj)
+    model.eval()
+    output = model(features, adj)
 
     loss_val = F.nll_loss(output[idx_val], labels[idx_val])
     acc_val = accuracy(output[idx_val], labels[idx_val])

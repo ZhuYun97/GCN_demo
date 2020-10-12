@@ -18,9 +18,10 @@ class GraphConvolution(nn.Module):
 		self.reset_parameters()
 
 	def reset_parameters(self):
-		nn.init.kaiming_uniform_(self.weight)
-		if self.bias is not None:
-			nn.init.zeros_(self.bias)
+		stdv = 1. / math.sqrt(self.weight.size(1))
+        self.weight.data.uniform_(-stdv, stdv)
+        if self.bias is not None:
+            self.bias.data.uniform_(-stdv, stdv)
 
 	def forward(self, x, adj):
 		support = torch.mm(x, self.weight)

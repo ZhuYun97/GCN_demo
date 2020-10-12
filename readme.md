@@ -28,4 +28,6 @@
 
 
 ## References
-- (GCN作者实现)[https://github.com/tkipf/pygcn]
+- [GCN作者实现](https://github.com/tkipf/pygcn)
+- [代码解析](https://zhuanlan.zhihu.com/p/78191258)
+- [参考书本](https://item.jd.com/12615065.html)
