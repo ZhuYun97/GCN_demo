@@ -41,7 +41,7 @@ if args.cuda:
 adj, features, labels, idx_train, idx_val, idx_test = load_data()
 
 # Model and optimizer
-model = GCN(nfeat=features.shape[1],
+model = GCN(in_features=features.shape[1],
             nhid=args.hidden,
             nclass=labels.max().item() + 1,
             dropout=args.dropout)
