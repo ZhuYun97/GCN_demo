@@ -19,9 +19,9 @@ class GraphConvolution(nn.Module):
 
 	def reset_parameters(self):
 		stdv = 1. / math.sqrt(self.weight.size(1))
-        self.weight.data.uniform_(-stdv, stdv)
-        if self.bias is not None:
-            self.bias.data.uniform_(-stdv, stdv)
+		self.weight.data.uniform_(-stdv, stdv)
+		if self.bias is not None:
+			self.bias.data.uniform_(-stdv, stdv)
 
 	def forward(self, x, adj):
 		support = torch.mm(x, self.weight)
