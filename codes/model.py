@@ -33,15 +33,18 @@ class GraphConvolution(nn.Module):
 
 
 class GCN(nn.Module):
-	def __init__(self, in_features, nhid, nclass):
+	def __init__(self, in_features, nhid, nclass, dropout):
 		self.in_features = in_features
 		self.nhid = nhid
 		self.nclass = nclass
+		self.dropout = dropout
 		self.gcn1 = GraphConvolution(in_features, nhid)
 		self.gcn2 = GraphConvolution(nhid, nclass)
 
 	def forward(self, x, adj):
 		h1 = F.relu(self.gcn1(x, adj))
-		logits = self.gc2(h1, adj)
-		return logits
+		h1_d = F.dropout(h1, self.dropout, training=self.training)
+		logits = self.gc2(h1_d, adj)
+		output = F.log_softmax(logits, dim=1)
+		return output
 
