@@ -4,7 +4,7 @@ import torch.nn.functional as F
 import math
 
 
-class GraphConvolution(nn.Module):
+class GraphConvolution(nn.modules.module):
 	
 	def __init__(self, in_features, out_features, bias=True):
 		super(GraphConvolution, self).__init__()
