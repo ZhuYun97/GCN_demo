@@ -95,13 +95,13 @@ def train(epoch):
 
 
 if __name__ == '__main__':
-	# Train model
-	t_total = time.time()
-	for epoch in tqdm(range(args.epochs)):
-	    train(epoch)
-	print("Optimization Finished!")
-	print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
+    # Train model
+    t_total = time.time()
+    for epoch in range(args.epochs):
+        train(epoch)
+    print("Optimization Finished!")
+    print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
 
-	# Testing
-	test()
+    # Testing
+    test()
 
